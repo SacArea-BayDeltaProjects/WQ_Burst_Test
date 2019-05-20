@@ -438,7 +438,7 @@ Public RecAllVelFlag As Boolean 'used to set timing for velocity collecting in S
 Public VemcoRTR As Boolean 'used to set datalogger as "Master" in Master/Slave configurations (originially used for VEMCO deployments)
 Public IsSubmersed As Boolean ''used to switch the function of the SW12V port so it's used for ADCP if the datalogger is in a submersible enclosure (with no relays, CDMA, etc.)
 Public Prompt As String *5
-Dim RecBeamCheckFlag As Boolean 'flag to turn beamcheck table on or off
+'Dim RecBeamCheckFlag As Boolean 'flag to turn beamcheck table on or off
 Public LowRatVel As Float' user input of lowest velocity covered by rating
 Dim InitialLRV As Float ' used for changing LowMeas flag to false if there's been a change to the LowRatVel
 Public HighRatVel As Float' user input of Highest velocity covered by rating
@@ -575,11 +575,11 @@ Dim NumbytesZero As Long
 Public CalcCheckSum As Float
 Public EnsChecksum As Float
 Dim TempL As Long
-Public Numbytes
+'Public Numbytes
 Public BadEnsemble As Long
 Public ScanNo As Long
 Dim Longarray(2000) As Long 'Array for the Raw Ensemble
-Dim Nums(2) As Long
+'Dim Nums(2) As Long
 Public EnsembleLen As Long
 Dim Datatypes As Long
 Dim Offsets(25) As Long 'offsets to the start of the datatype locations
@@ -592,7 +592,7 @@ Public BlankDist As Long 'Blanking distance of ADCP
 Public EX As Long 'coordinate transformation
 Public ES As Long 'Salinity
 Public Decode As String * 70
-Public FramingError As Long
+'Public FramingError As Long
 Dim FixedLeadOffset As Long
 Dim MSB As Long
 Dim MSB1 As Long
@@ -1174,11 +1174,11 @@ Public VMdataIn As Boolean
   Dim LSB1Temp As Long
   Dim MSBTemp As Long
   Dim MSB1Temp As Long
-  Dim Subscans As Long
-  Dim EnsBytes As Long
+  'Dim Subscans As Long
+  'Dim EnsBytes As Long
   Dim MissedEns As Long
-  Dim ADCPLoop As Long
-  Dim ADCPDone As Boolean
+  'Dim ADCPLoop As Long
+  'Dim ADCPDone As Boolean
   Dim ScanDiff As Long
   Dim DebugTime(9) 'DEBUGGING START TIME OF SCANS
   Alias DebugTime(3) = DayOfMnth
@@ -1662,166 +1662,166 @@ SetStatus ("USRDriveSize",16384)
 'BadQCount or YsiErrCount = 200 (problem for more than 3 hours)
 'And it is called at Midnight
 'QAQC table that is called at midnight and gets pertainent information
-DataTable  (QAQCInfo,Rec24HrFlag,-1)
-  CardOut (0,180) 'sends copy of data to CF card (Will store a lot of data on card)
-  'TableFile("USR:Test",8,2,0,24,Hr,Outstat,LastFileName) 'when OutStat = True, then data goes to FTP site
-  'Store system info here
-  Sample (1,SiteID,String)
-  Sample (1,SiteNum,String)
-  Sample (1,Tech,String)
-  Sample (1,VisitReason,String
-  Sample (1,Program,String)
-  Sample (1,ProgVersDate,String)
-  Sample (1,SerNum,Long)
-  Sample (1,OSVers,String)
-  Sample (1,AdcpSN,Long)
-  Sample (1,IsCM,Boolean)
-  Sample (1,NewADCP,Boolean)
-  Sample (1,PS1SN,String)
-  Sample (1,NewPS1,Boolean)
-  Sample (1,PS2SN,String)
-  Sample (1,NewPS2,Boolean)
-  Sample (1,EX,Long)'how is the vm setup
-  Sample (1,Coord,String)
-  Sample (1,Decode,String)
-  Sample (1,ProgErrors,Long)
-  Sample (1,Low12Volts,Long)
-  Sample (1,LithBat,FP2)
-  Sample (1,SkipScans,Long)
-  Sample (1,FreeCFMem,IEEE4)
-  Sample (1,LowMeas,Boolean)
-  Sample (1,HighMeas, Boolean)
-  Sample (1,BadQCount,Long)
-  Sample (1,BadVelCount,Long)
-  Sample (1,BadBinCnt,Long)
-  Sample (1,BadEnsCount,FP2)
-  Sample (1,BadStgCount,Long)
-  #If (WqSonde <> "NONE") Then
-    Sample (1,WqErrCount,Long)
-    Sample (1,WqBattV,FP2)
-  #EndIf
-  Sample (1,VMRestartAttempts,FP2)
-  Sample (1,IndexVel,FP2)
-  Sample (1,StagePrime,IEEE4)
-  Sample (1,StageSecnd,IEEE4)
-  Sample (1,SelStgPrime,FP2)
-  Sample (1,SelStgSecnd,FP2)
-  Sample (1,UpBeamStg,IEEE4)
-  Sample (1,VMPressStg,IEEE4)
-  Sample (1,PS1Stg,IEEE4)
-  Sample (1,PS2Stg,IEEE4)
-  Sample (1,SondeStg,IEEE4)
-  Sample (1,UpBeamOffset,IEEE4)
-  Sample (1,VMPressOffset,IEEE4)
-  Sample (1,PS1Offset,IEEE4)
-  Sample (1,PS2Offset,IEEE4)
-  Sample (1,SondeOffset,IEEE4)
-  Sample (1,VMtempC,FP2)
-  Sample (1,VMpitch,FP2)
-  Sample (1,VMroll,FP2)
-  Sample (1,CR1Volts,FP2)
-  Sample (1,ExtWHConvertVolt,FP2)
-  Maximum (1,PTempC,FP2,false,false)
-  Minimum (1,PTempC,FP2,false,false)
-  Sample (1,NumADCPBins,FP2)
-  Sample (1,NumBeams,FP2)
-  Sample (1,EnsPings,FP2)
-  Sample (1,BinSize,FP2)
-  Sample (1,BlankDist,FP2)
-  Sample (1,StartBin,FP2)
-  Sample (1,EndBin,FP2)
-  Sample (1,StartEbbBin,FP2)
-  Sample (1,EndEbbBin,FP2)
-  Sample (1,StartFldBin,FP2)
-  Sample (1,EndFldBin,FP2)
-  Sample (1,BiRatTran,FP2)
-  Sample (1,UseBiRat,Boolean)
-  Sample (1,CutOffBins,FP2)
-  Sample (1,VMHeading,FP2)
-  Sample (1,UseV2,Boolean)
-  Sample (1,FlowSign,Long)
-  Sample (1,CdmaWorks,Boolean)
-  'Maximum (1,LastGoodBin,FP2,False,False)
-  'Minimum (1,LastGoodBin,FP2,False,False)
-  'Average (1,LastGoodBin,FP2,False)
-  Sample (1,StgOffset,IEEE4)
-  Sample (1,StgCoef,IEEE4)
-  Sample (1,StgCoef2,IEEE4)
-  Sample (1,VelOffset,IEEE4)
-  Sample (1,VelCoef,IEEE4)
-  Sample (1,VelCoef2,IEEE4)
-  Sample (1,VelCoef3,IEEE4)
-  Sample (1,UpVelOffset,IEEE4)
-  Sample (1,UpVelCoef,IEEE4)
-  Sample (1,UpVelCoef2,IEEE4)
-  Sample (1,UpVelCoef3,IEEE4)
-  Sample (1,LowVelOffset,IEEE4)
-  Sample (1,LowVelCoef,IEEE4)
-  Sample (1,LowVelCoef2,IEEE4)
-  Sample (1,LowVelCoef3,IEEE4)
-  Sample (1,Trans,FP2)
-  Sample (1,VMLowMemCount,FP2)
-  Sample (1,VMLowMem,Boolean)
-  Sample (1,VMMemFree,FP2)
-  Sample (1,RecErased,Boolean)
-EndTable
+'DataTable  (QAQCInfo,Rec24HrFlag,-1)
+'  CardOut (0,180) 'sends copy of data to CF card (Will store a lot of data on card)
+'  'TableFile("USR:Test",8,2,0,24,Hr,Outstat,LastFileName) 'when OutStat = True, then data goes to FTP site
+'  'Store system info here
+'  Sample (1,SiteID,String)
+'  Sample (1,SiteNum,String)
+'  Sample (1,Tech,String)
+'  Sample (1,VisitReason,String
+'  Sample (1,Program,String)
+'  Sample (1,ProgVersDate,String)
+'  Sample (1,SerNum,Long)
+'  Sample (1,OSVers,String)
+'  Sample (1,AdcpSN,Long)
+'  Sample (1,IsCM,Boolean)
+'  Sample (1,NewADCP,Boolean)
+'  Sample (1,PS1SN,String)
+'  Sample (1,NewPS1,Boolean)
+'  Sample (1,PS2SN,String)
+'  Sample (1,NewPS2,Boolean)
+'  Sample (1,EX,Long)'how is the vm setup
+'  Sample (1,Coord,String)
+'  Sample (1,Decode,String)
+'  Sample (1,ProgErrors,Long)
+'  Sample (1,Low12Volts,Long)
+'  Sample (1,LithBat,FP2)
+'  Sample (1,SkipScans,Long)
+'  Sample (1,FreeCFMem,IEEE4)
+'  Sample (1,LowMeas,Boolean)
+'  Sample (1,HighMeas, Boolean)
+'  Sample (1,BadQCount,Long)
+'  Sample (1,BadVelCount,Long)
+'  Sample (1,BadBinCnt,Long)
+'  Sample (1,BadEnsCount,FP2)
+'  Sample (1,BadStgCount,Long)
+'  #If (WqSonde <> "NONE") Then
+'    Sample (1,WqErrCount,Long)
+'    Sample (1,WqBattV,FP2)
+'  #EndIf
+'  Sample (1,VMRestartAttempts,FP2)
+'  Sample (1,IndexVel,FP2)
+'  Sample (1,StagePrime,IEEE4)
+'  Sample (1,StageSecnd,IEEE4)
+'  Sample (1,SelStgPrime,FP2)
+'  Sample (1,SelStgSecnd,FP2)
+'  Sample (1,UpBeamStg,IEEE4)
+'  Sample (1,VMPressStg,IEEE4)
+'  Sample (1,PS1Stg,IEEE4)
+'  Sample (1,PS2Stg,IEEE4)
+'  Sample (1,SondeStg,IEEE4)
+'  Sample (1,UpBeamOffset,IEEE4)
+'  Sample (1,VMPressOffset,IEEE4)
+'  Sample (1,PS1Offset,IEEE4)
+'  Sample (1,PS2Offset,IEEE4)
+'  Sample (1,SondeOffset,IEEE4)
+'  Sample (1,VMtempC,FP2)
+'  Sample (1,VMpitch,FP2)
+'  Sample (1,VMroll,FP2)
+'  Sample (1,CR1Volts,FP2)
+'  Sample (1,ExtWHConvertVolt,FP2)
+'  Maximum (1,PTempC,FP2,false,false)
+'  Minimum (1,PTempC,FP2,false,false)
+'  Sample (1,NumADCPBins,FP2)
+'  Sample (1,NumBeams,FP2)
+'  Sample (1,EnsPings,FP2)
+'  Sample (1,BinSize,FP2)
+'  Sample (1,BlankDist,FP2)
+'  Sample (1,StartBin,FP2)
+'  Sample (1,EndBin,FP2)
+'  Sample (1,StartEbbBin,FP2)
+'  Sample (1,EndEbbBin,FP2)
+'  Sample (1,StartFldBin,FP2)
+'  Sample (1,EndFldBin,FP2)
+'  Sample (1,BiRatTran,FP2)
+'  Sample (1,UseBiRat,Boolean)
+'  Sample (1,CutOffBins,FP2)
+'  Sample (1,VMHeading,FP2)
+'  Sample (1,UseV2,Boolean)
+'  Sample (1,FlowSign,Long)
+'  Sample (1,CdmaWorks,Boolean)
+'  'Maximum (1,LastGoodBin,FP2,False,False)
+'  'Minimum (1,LastGoodBin,FP2,False,False)
+'  'Average (1,LastGoodBin,FP2,False)
+'  Sample (1,StgOffset,IEEE4)
+'  Sample (1,StgCoef,IEEE4)
+'  Sample (1,StgCoef2,IEEE4)
+'  Sample (1,VelOffset,IEEE4)
+'  Sample (1,VelCoef,IEEE4)
+'  Sample (1,VelCoef2,IEEE4)
+'  Sample (1,VelCoef3,IEEE4)
+'  Sample (1,UpVelOffset,IEEE4)
+'  Sample (1,UpVelCoef,IEEE4)
+'  Sample (1,UpVelCoef2,IEEE4)
+'  Sample (1,UpVelCoef3,IEEE4)
+'  Sample (1,LowVelOffset,IEEE4)
+'  Sample (1,LowVelCoef,IEEE4)
+'  Sample (1,LowVelCoef2,IEEE4)
+'  Sample (1,LowVelCoef3,IEEE4)
+'  Sample (1,Trans,FP2)
+'  Sample (1,VMLowMemCount,FP2)
+'  Sample (1,VMLowMem,Boolean)
+'  Sample (1,VMMemFree,FP2)
+'  Sample (1,RecErased,Boolean)
+'EndTable
 
 'This data table is called when there is a station visit
-DataTable(SiteVisit,True,-1)
-  CardOut (0,50)
-  Sample (1,SiteID,String)
-  Sample (1,SiteNum,String)
-  Sample (1,IndexVel,IEEE4)
-  Sample (1,Qcfs,IEEE4)
-  Sample (1,StagePrime,IEEE4)
-  Sample (1,UpBeamStg,IEEE4)
-  Sample (1,VMPressStg,IEEE4)
-  Sample (1,PS1Stg,IEEE4)
-  Sample (1,PS2Stg,IEEE4)
-  Sample (1,SondeStg,IEEE4)
-  Sample (1,UpBeamOffset,IEEE4)
-  Sample (1,VMPressOffset,IEEE4)
-  Sample (1,PS1Offset,IEEE4)
-  Sample (1,PS2Offset,IEEE4)
-  Sample (1,SondeOffset,IEEE4)
-  Sample (1,VMtempC,FP2)
-  Sample (1,VMpitch,FP2)
-  Sample (1,VMroll,FP2)
-  Sample (1,CR1Volts,FP2)
-  Sample (1,ExtWHConvertVolt,FP2)
-  Sample (1,StartBin,Long)
-  Sample (1,EndBin,Long)
-  Sample (1,VMHeading,FP2)
-  Sample (1,NumADCPBins,Long)
-  Sample (1,BlankDist,Long)
-  Sample (1,BinSize,Long)
-  Sample (1,CutOffBins,FP2)
-  #If (WqSonde <> "NONE") Then
-    Sample (1,WqBattV,FP2)
-    Sample (1,WqTempC,FP2)
-    Sample (1,WqSpCond,IEEE4)
-    Sample (1,WqTurbFNU,FP2)
-    Sample (1,WqDOMgl,FP2)
-    Sample (1,WqPH,FP2)
-    Sample (1,WqChlugL,FP2)
-    Sample (1,WqChlRFU,FP2)
-    Sample (1,WqDepthFt,FP2)
-    Sample (1,WqDOSat,FP2)
-    Sample (1,WqFDOMrfu,FP2)
-    Sample (1,WqFDOMqsu,FP2)
-    Sample (1,WqBGArfu,FP2)
-    Sample (1,WqBGAugl,FP2)
-    Sample (1,WqNH4mgl,FP2)
-    Sample (1,WqNO3mgl,FP2)
-    Sample (1,WqCLmgl,FP2)
-    Sample (1,WqErrCount,Long)
-  #EndIf
-  Sample (1,BadQCount,Long)
-  Sample (1,LithBat,FP2)
-  Sample (1,Tech,String)
-  Sample (1,VisitReason,String)
-  Sample (1,VMMemFree,FP2)
-EndTable
+'DataTable(SiteVisit,True,-1)
+'  CardOut (0,50)
+'  Sample (1,SiteID,String)
+'  Sample (1,SiteNum,String)
+'  Sample (1,IndexVel,IEEE4)
+'  Sample (1,Qcfs,IEEE4)
+'  Sample (1,StagePrime,IEEE4)
+'  Sample (1,UpBeamStg,IEEE4)
+'  Sample (1,VMPressStg,IEEE4)
+'  Sample (1,PS1Stg,IEEE4)
+'  Sample (1,PS2Stg,IEEE4)
+'  Sample (1,SondeStg,IEEE4)
+'  Sample (1,UpBeamOffset,IEEE4)
+'  Sample (1,VMPressOffset,IEEE4)
+'  Sample (1,PS1Offset,IEEE4)
+'  Sample (1,PS2Offset,IEEE4)
+'  Sample (1,SondeOffset,IEEE4)
+'  Sample (1,VMtempC,FP2)
+'  Sample (1,VMpitch,FP2)
+'  Sample (1,VMroll,FP2)
+'  Sample (1,CR1Volts,FP2)
+'  Sample (1,ExtWHConvertVolt,FP2)
+'  Sample (1,StartBin,Long)
+'  Sample (1,EndBin,Long)
+'  Sample (1,VMHeading,FP2)
+'  Sample (1,NumADCPBins,Long)
+'  Sample (1,BlankDist,Long)
+'  Sample (1,BinSize,Long)
+'  Sample (1,CutOffBins,FP2)
+'  #If (WqSonde <> "NONE") Then
+'    Sample (1,WqBattV,FP2)
+'    Sample (1,WqTempC,FP2)
+'    Sample (1,WqSpCond,IEEE4)
+'    Sample (1,WqTurbFNU,FP2)
+'    Sample (1,WqDOMgl,FP2)
+'    Sample (1,WqPH,FP2)
+'    Sample (1,WqChlugL,FP2)
+'    Sample (1,WqChlRFU,FP2)
+'    Sample (1,WqDepthFt,FP2)
+'    Sample (1,WqDOSat,FP2)
+'    Sample (1,WqFDOMrfu,FP2)
+'    Sample (1,WqFDOMqsu,FP2)
+'    Sample (1,WqBGArfu,FP2)
+'    Sample (1,WqBGAugl,FP2)
+'    Sample (1,WqNH4mgl,FP2)
+'    Sample (1,WqNO3mgl,FP2)
+'    Sample (1,WqCLmgl,FP2)
+'    Sample (1,WqErrCount,Long)
+'  #EndIf
+'  Sample (1,BadQCount,Long)
+'  Sample (1,LithBat,FP2)
+'  Sample (1,Tech,String)
+'  Sample (1,VisitReason,String)
+'  Sample (1,VMMemFree,FP2)
+'EndTable
 
 '1 MINUTE DATA OUTPUT TABLE
 DataTable (Data1m,Rec1MinFlag,-1)
@@ -1869,29 +1869,29 @@ DataTable (Data1m,Rec1MinFlag,-1)
 EndTable
 
 'BEAMCHECK DATA OUTPUT TABLE
-DataTable (BeamCheck,RecBeamCheckFlag,-1)
-  OpenInterval
-  CardOut (0,17280)
-  Sample (1,SiteID,String)
-  Sample (1,StagePrime,IEEE4)
-  Sample (1,NumBeams,Long)
-  Sample (1,NumADCPBins,Long)
-  Sample (1,BinSize,Long)
-  Sample (1,StartBin,Long)
-  Sample (1,EndBin,Long)
-  Sample (1,VMpitch,FP2)
-  Sample (1,VMroll,FP2)
-  Average (108,ensRSSI(),UINT2,False)
-  Average (108,ensCorr(),UINT2,False)
-  Sample (1,VMupBeam,IEEE4)
-  Average (1,VMupBeam,IEEE4,False)
-  Sample (1,VMtempC,IEEE4)
-  Average (1,VMtempC,IEEE4,False)
-  Sample (1,VMVolts,IEEE4)
-  Average (1,VMVolts,IEEE4,False)
-  Sample (1,ExtWHConvertVolt,IEEE4)
-  Average (1,ExtWHConvertVolt,IEEE4,False)
-EndTable
+'DataTable (BeamCheck,RecBeamCheckFlag,-1)
+'  OpenInterval
+'  CardOut (0,17280)
+'  Sample (1,SiteID,String)
+'  Sample (1,StagePrime,IEEE4)
+'  Sample (1,NumBeams,Long)
+'  Sample (1,NumADCPBins,Long)
+'  Sample (1,BinSize,Long)
+'  Sample (1,StartBin,Long)
+'  Sample (1,EndBin,Long)
+'  Sample (1,VMpitch,FP2)
+'  Sample (1,VMroll,FP2)
+'  Average (108,ensRSSI(),UINT2,False)
+'  Average (108,ensCorr(),UINT2,False)
+'  Sample (1,VMupBeam,IEEE4)
+'  Average (1,VMupBeam,IEEE4,False)
+'  Sample (1,VMtempC,IEEE4)
+'  Average (1,VMtempC,IEEE4,False)
+'  Sample (1,VMVolts,IEEE4)
+'  Average (1,VMVolts,IEEE4,False)
+'  Sample (1,ExtWHConvertVolt,IEEE4)
+'  Average (1,ExtWHConvertVolt,IEEE4,False)
+'EndTable
 
 '___________Field Readings Table____________
 'This table will only store a single record.
@@ -1943,25 +1943,25 @@ DataTable (SVMaq,True,1)
 EndTable
 
 'NOISE FLOOR DATA TABLE
-#If GetNoiseFloor = Yes Then
-  DataTable (NoiseFloor,True,-1)
-    OpenInterval
-    CardOut (0,180)
-    Sample (1,SiteID,String)
-    Sample (1,SiteNum,String)
-    Sample (4,NoiseHGainW(),FP2)
-    'Sample (1,NoiseHGainW(2),FP2)
-    Sample (4,NoiseHGainN(),FP2)
-    'Sample (1,NoiseHGainN(2),FP2)
-    Sample (4,NoiseLGainW(),FP2)
-    'Sample (1,NoiseLGainW(2),FP2)
-    Sample (4,NoiseLGainN(),FP2)
-    'Sample (1,NoiseLGainN(2),FP2)
-    Sample (1,VMtempC,IEEE4)
-    Sample (1,VMVolts,IEEE4)
-    Sample (1,ExtWHConvertVolt,IEEE4)
-  EndTable
-#EndIf
+'#If GetNoiseFloor = Yes Then
+'  DataTable (NoiseFloor,True,-1)
+'    OpenInterval
+'    CardOut (0,180)
+'    Sample (1,SiteID,String)
+'    Sample (1,SiteNum,String)
+'    Sample (4,NoiseHGainW(),FP2)
+'    'Sample (1,NoiseHGainW(2),FP2)
+'    Sample (4,NoiseHGainN(),FP2)
+'    'Sample (1,NoiseHGainN(2),FP2)
+'    Sample (4,NoiseLGainW(),FP2)
+'    'Sample (1,NoiseLGainW(2),FP2)
+'    Sample (4,NoiseLGainN(),FP2)
+'    'Sample (1,NoiseLGainN(2),FP2)
+'    Sample (1,VMtempC,IEEE4)
+'    Sample (1,VMVolts,IEEE4)
+'    Sample (1,ExtWHConvertVolt,IEEE4)
+'  EndTable
+'#EndIf
 
 DataTable (Debugger,True,-1)
   OpenInterval
@@ -5324,7 +5324,6 @@ BeginProg
       If (IsWqMax232 = False) AND (WqUseCPort = True) Then 'ifsonde isn't using a Max232 and is in a c port
         UseCommsZeroForSonde = True 'then we need to uses comms mode zero to speak standard RS232
         EndIf
-  #EndIf
   PanelTemp(PTempC,250)
   PTempF = PTempC * 9/5 + 32
   Call GetStartup 'setup all the statup\default info
@@ -5345,7 +5344,7 @@ BeginProg
     Timer(5,mSec,2)
     RealTime DebugTime()
     CallTable DebugTimer
-    Dim InCount As Long
+    'Dim InCount As Long
     ScanStart = Timer(2,mSec,2)
     ScanStart = ScanStart/1000
     '------------------------------------------------------------------------------------------------------------------------
@@ -5413,7 +5412,7 @@ BeginProg
       BurstReachedMod = Mod15Minutes
       'On initial compile the burstperiod is set to zero. Have it switch to the standard 1150 unless user declares otherwise.
       If BurstPeriod = 0 Then
-      BurstPeriod = 1150
+      BurstPeriod = 250
       ElseIf BurstPeriod < 250 Then 'if user enters values less than 250, but not 0, bring it up to 250. This is the max rate that the sonde can collect.
         BurstPeriod = 250
       EndIf
@@ -5438,8 +5437,6 @@ BeginProg
       #EndIf
       If RecordAll = Yes Then RecAllVelFlag = Yes
       RecDataFlag = No 'Set it back to false for next time
-    EndIf
-    If Mod15Minutes > 35 Then RecDataFlag = No
     EndIf
     #If (WqSonde = "WQ_SERIAL") OR (WqSonde = "WQ_SERIAL_BURST") Then
       If (Mod15Minutes > 770) AND (Mod15Minutes < 790) Then 'wipe 13mins +- 10s into a 15 min period when not collecting burst, set a disable variable
@@ -5561,18 +5558,6 @@ BeginProg
   #EndIf
   AfterBurst = Timer(2,msec,4)
   AfterBurst = AfterBurst/1000
-
-  If VMdataIn = Yes Then 'only process data if we have it
-    VmDeadCount = 0
-    MainDecodeStart = Timer(2,msec,4)
-    MainDecodeStart = MainDecodeStart/1000
-    Call MainDecode
-    MainDecodeEnd = Timer(2,msec,4)
-    MainDecodeEnd = MainDecodeEnd/1000
-    MainDecodeTotTime = MainDecodeEnd-MainDecodeStart
-    #If WqSonde <>"NONE" Then
-      TempDiff = WqTempC - VMtempC
-    #EndIf
     #If (WqSonde = "WQ_SERIAL") OR (WqSonde = "WQ_SERIAL_BURST") Then
       If WqError = true Then
         WqBadData = True
@@ -5586,84 +5571,6 @@ BeginProg
         WqBadData = False
       EndIf
     #EndIf
-
-    #If UseAutoRange = true
-      CalcRangeStart = Timer(2,msec,4)
-      CalcRangeStart = CalcRangeStart/1000
-      Call CalcRangebin
-      EndBin = RangedBin
-      CalcRangeEnd = Timer(2,msec,4)
-      CalcRangeEnd = CalcRangeEnd/1000
-      CalcRangeTotTime = CalcRangeEnd - CalcRangeStart
-    #EndIf
-    '      Call LastGoodBinCheck
-    OneMinCalcStart = Timer(2,msec,4)
-    OneMinCalcStart = OneMinCalcStart/1000
-    Call OneMinuteCalcs
-    OneMinCalcEnd = Timer(2,msec,4)
-    OneMinCalcEnd = OneMinCalcEnd/1000
-    OneMinCalcTotTime = OneMinCalcEnd - OneMinCalcStart
-    CalcQStart = Timer(2,msec,4)
-    CalcQStart = CalcQStart/1000
-    Call SubCalcQ
-    CalcQEnd = Timer(2,msec,4)
-    CalcQEnd = CalcQEnd/1000
-    CalcQTotTime = CalcQEnd-CalcQStart
-    GetVMMemStart = Timer(2,msec,4)
-    GetVMMemStart = GetVMMemStart/1000
-    Call GetVMFreeMem
-    GetVMMemEnd = Timer(2,msec,4)
-    GetVMMemEnd = GetVMMemEnd/1000
-    GetVMMemTotTime = GetVMMemEnd-GetVMMemStart
-
-    'now call the DataOut tables (need to be seen on every scan)
-    'if hasVM = False and we're getting vm data we need to disable these two tables because they are called later
-    #If HasVM Then
-      #If IsSpecStudy = Yes Then 'although the table is called, it will not record anything unless
-        'vm is 3-4 beams and set to beam or earth coords or the RecordAll boolean is toggled
-        CallTable VelData
-      #EndIf
-      RecAllVelFlag = false
-      'Rec15minFlag = false 'turn data table flag back off
-      'make sure spike stuff is not called if hasvm is false
-      If ScanNo >= 20 Then 'fill fif0 buffer before checking but do check first incase we have to set disable variables
-        ChkSpikeStart = Timer(2,msec,4)
-        ChkSpikeStart = ChkSpikeStart/1000
-        Call CheckSpikes
-        ChkSpikeEnd = Timer(2,msec,4)
-        ChkSpikeEnd = ChkSpikeEnd/1000
-        ChkSpikeTotTime = ChkSpikeEnd - ChkSpikeStart
-        #If StoreAllToCard Then
-          StoreToCrdStart = Timer(2,msec,4)
-          StoreToCrdStart = StoreToCrdStart/1000
-          Call StoreAllData
-          StoreToCrdEnd = Timer(2,msec,4)
-          StoreToCrdEnd = StoreToCrdEnd/1000
-          StoreToCrdTotTime = StoreToCrdEnd-StoreToCrdStart
-        #EndIf
-      EndIf
-      AddSpikeStart = Timer(2,msec,4)
-      AddSpikeStart = AddSpikeStart/1000
-      Call AddSpikes 'make sure buffer is full before checking
-      AddSpikeEnd = Timer(2,msec,4)
-      AddSpikeEnd = AddSpikeEnd/1000
-      AddSpikeTotTime = AddSpikeEnd-AddSpikeStart
-    #EndIf
-  Else 'if no vm data in
-    VmDeadCount = VmDeadCount + 1
-  EndIf 'if vm data in
-  If VmDeadCount >= VMDeadCntMax Then
-    WakeUpVM = True
-  EndIf
-  DataTabsEnd = Timer(2,msec,4)
-  DataTabsEnd = DataTabsEnd/1000
-  DataTabsTotTime = DataTabsEnd - DataTabsStart
-  Call StageDiff
-  Call ResetMeasFlags
-  Call GetSN
-  If SetVMTimeFlg Then
-    Call SetVMTime
-  EndIf
   #If (WqSonde = "WQ_SERIAL") OR (WqSonde = "WQ_SERIAL_BURST") Then ' Check WQ flags and do things!!
     If Wipeflag = true Then
       Call WipeWQ
@@ -5715,12 +5622,6 @@ BeginProg
   AQTabEnd = Timer (2,msec,4)
   AQTabEnd = AQTabEnd/1000
   AQTabTotTime = AQTabEnd - AQTabStart   'store the instantaneous variables to the aquarius table
-  CallBmChkStart = Timer(2,msec,4)
-  CallBmChkStart = CallBmChkStart/1000
-  CallTable BeamCheck
-  CallBmChkEnd = Timer(2,msec,4)
-  CallBmChkEnd = CallBmChkEnd/1000
-  CallBmChkTotTime = CallBmChkEnd-CallBmChkStart
   Rec15minFlag = false 'turn off data table trigger flags (until they get triggered in the program above at the next appropriate interval)
         #If WqSonde = "WQ_SERIAL_BURST" Then
   RecBurstFlag = False
